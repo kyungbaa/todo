@@ -4,13 +4,15 @@ const Header = ({ filter, filters, onFilterChange }) => {
   return (
     <header className={styles.header}>
       <ul className={styles.filters}>
-        {filters.map((filter, index) => (
+        {filters.map((value, index) => (
           <li key={index}>
             <button
-              onClick={(e) => onFilterChange(filter)}
-              className={styles.filter}
+              onClick={(e) => onFilterChange(value)}
+              className={`${styles.filter} ${
+                filter === value && styles.selected
+              }`}
             >
-              {filter}
+              {value}
             </button>
           </li>
         ))}
