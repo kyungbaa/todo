@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import AddTodo from "../AddTodo/AddTodo";
-import Todo from "../Todo/Todo";
-// import { RiDeleteBinFill } from "react-icons/ri";
-const TodoList = () => {
+import React, { useState } from 'react';
+import AddTodo from '../AddTodo/AddTodo';
+import Todo from '../Todo/Todo';
+const TodoList = ({ filter }) => {
   const [todos, setTodos] = useState([
-    { id: 1, text: "장보기", status: "active" },
-    { id: 2, text: "공부하기", status: "active" },
+    { id: 1, text: '장보기', status: 'active' },
+    { id: 2, text: '공부하기', status: 'active' },
   ]);
-  console.log(todos);
 
   const handleAddTodo = (todo) => {
     setTodos([...todos, todo]);
@@ -18,11 +16,12 @@ const TodoList = () => {
   const handleDelete = (deleted) => {
     setTodos(todos.filter((todo) => todo.id !== deleted.id));
   };
+  const filtered = getFilterdItems(todos, filter);
 
   return (
     <section>
       <ul>
-        {todos.map((list) => (
+        {filtered.map((list) => (
           <Todo
             key={list.id}
             todo={list}
@@ -34,6 +33,11 @@ const TodoList = () => {
       <AddTodo setTodos={setTodos} handleAddTodo={handleAddTodo} />
     </section>
   );
+};
+
+const getFilterdItems = (todos, filter) => {
+  if (filter === 'all') return todos;
+  return todos.filter((todo) => todo.status === filter);
 };
 
 export default TodoList;

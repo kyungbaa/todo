@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { AiFillEdit, AiTwotoneDelete } from "react-icons/ai";
+import {
+  AiTwotoneTool,
+  AiFillCloseSquare,
+  AiFillCheckSquare,
+} from 'react-icons/ai';
 
 const Todo = ({ todo, onUpdate, onDelete }) => {
   const { text, status } = todo;
   const [modifyStatus, setModifyStatus] = useState(true);
   const [modifyText, setModifyText] = useState(text);
   const handleStatus = (e) => {
-    const status = e.target.checked ? "completed" : "active";
+    const status = e.target.checked ? 'completed' : 'active';
     onUpdate({ ...todo, status });
   };
   const handleDelete = () => {
@@ -16,9 +20,10 @@ const Todo = ({ todo, onUpdate, onDelete }) => {
   const handleModifyStatus = () => {
     setModifyStatus(!modifyStatus);
   };
-  const handleModify = () => {
-    console.log("ddd");
-    // onUpdate({ ...todo, text: modifyText });
+  const handleModifySubmit = (e) => {
+    e.preventDefault();
+    onUpdate({ ...todo, text: modifyText });
+    handleModifyStatus();
   };
 
   const handleModifyText = (e) => {
@@ -31,17 +36,17 @@ const Todo = ({ todo, onUpdate, onDelete }) => {
           <input
             type="checkbox"
             id="checkbox"
-            checked={status === "completed"}
+            checked={status === 'completed'}
             onChange={handleStatus}
           />
           <label htmlFor="checkbox">{text}</label>
 
           <button onClick={handleDelete}>
-            <AiTwotoneDelete size="20px" />
+            <AiFillCloseSquare size="16px" />
           </button>
 
           <button onClick={handleModifyStatus}>
-            <AiFillEdit size="20px" />
+            <AiTwotoneTool size="16px" />
           </button>
         </li>
       ) : (
@@ -52,10 +57,10 @@ const Todo = ({ todo, onUpdate, onDelete }) => {
             defaultValue={text}
           ></input>
           <button
-            onClick={handleModify}
-            disabled={modifyText.trim() !== "" ? false : true}
+            onClick={handleModifySubmit}
+            disabled={modifyText.trim() !== '' ? false : true}
           >
-            <AiFillEdit />
+            <AiFillCheckSquare size="16px" />
           </button>
         </form>
       )}
