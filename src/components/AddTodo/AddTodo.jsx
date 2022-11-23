@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-
+import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import styles from './AddTodo.module.css';
+import AlertModal from './AlertModal/AlertModal';
 const AddTodo = ({ handleAddTodo }) => {
-  const [todoText, setTotoText] = useState("");
+  const [todoText, setTotoText] = useState('');
   const [textNullAlert, setTextNullAleart] = useState(false);
   const handleInputValue = (e) => {
     setTotoText(e.target.value);
@@ -10,32 +11,35 @@ const AddTodo = ({ handleAddTodo }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (todoText.trim() === "") {
+    if (todoText.trim() === '') {
       handleNullTextAleart();
       return;
     }
-    handleAddTodo({ id: uuidv4(), text: todoText, status: "active" });
-    setTotoText("");
+    handleAddTodo({ id: uuidv4(), text: todoText, status: 'active' });
+    setTotoText('');
   };
 
   const handleNullTextAleart = () => {
     setTextNullAleart(!textNullAlert);
-    setTimeout(() => {
-      setTextNullAleart((textNullAlert) => !textNullAlert);
-    }, 1000);
+    // setTimeout(() => {
+    //   setTextNullAleart((textNullAlert) => !textNullAlert);
+    // }, 1000);
   };
 
   return (
-    <form>
-      {!!textNullAlert ? <p>텍스트를 적어주세요.</p> : null}
+    <form className={styles.form}>
+      {!!textNullAlert ? <AlertModal /> : null}
       <input
         type="text"
         placeholder="Add Todo"
         value={todoText}
         onChange={handleInputValue}
+        className={styles.input}
       ></input>
 
-      <button onClick={handleSubmit}>Add</button>
+      <button onClick={handleSubmit} className={styles.button}>
+        Add
+      </button>
     </form>
   );
 };
