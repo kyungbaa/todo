@@ -21,3 +21,8 @@
   padding: 0 2rem;
   border-radius: 0 0.3rem 0.3rem 0;
 }
+
+.button:hover {
+  filter: brightness(125%);
+  transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+}
