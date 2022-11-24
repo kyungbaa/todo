@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-
 import {
   AiTwotoneTool,
   AiFillCloseSquare,
   AiFillCheckSquare,
 } from 'react-icons/ai';
 
+import styles from './Todo.module.css';
 const Todo = ({ todo, onUpdate, onDelete }) => {
   const { text, status } = todo;
   const [modifyStatus, setModifyStatus] = useState(true);
@@ -32,22 +32,32 @@ const Todo = ({ todo, onUpdate, onDelete }) => {
   return (
     <>
       {modifyStatus ? (
-        <li>
+        <li className={styles.todo}>
           <input
+            className={styles.checkbox}
             type="checkbox"
             id="checkbox"
             checked={status === 'completed'}
             onChange={handleStatus}
           />
-          <label htmlFor="checkbox">{text}</label>
-
-          <button onClick={handleDelete}>
-            <AiFillCloseSquare size="16px" />
-          </button>
-
-          <button onClick={handleModifyStatus}>
-            <AiTwotoneTool size="16px" />
-          </button>
+          <label className={styles.text} htmlFor="checkbox">
+            {text}
+          </label>
+          <div className={styles.buttons}>
+            <span className={styles.icon}>
+              <button onClick={handleDelete} className={styles.todoButton}>
+                <AiFillCloseSquare size="16px" />
+              </button>
+            </span>
+            <span className={styles.icon}>
+              <button
+                onClick={handleModifyStatus}
+                className={styles.todoButton}
+              >
+                <AiTwotoneTool size="16px" />
+              </button>
+            </span>
+          </div>
         </li>
       ) : (
         <form>
@@ -56,12 +66,17 @@ const Todo = ({ todo, onUpdate, onDelete }) => {
             onChange={handleModifyText}
             defaultValue={text}
           ></input>
-          <button
-            onClick={handleModifySubmit}
-            disabled={modifyText.trim() !== '' ? false : true}
-          >
-            <AiFillCheckSquare size="16px" />
-          </button>
+          <div className={styles.buttons}>
+            <span className={styles.icon}>
+              <button
+                className={styles.todoButton}
+                onClick={handleModifySubmit}
+                disabled={modifyText.trim() !== '' ? false : true}
+              >
+                <AiFillCheckSquare size="16px" />
+              </button>
+            </span>
+          </div>
         </form>
       )}
     </>
