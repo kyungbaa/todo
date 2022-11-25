@@ -14,8 +14,8 @@
 }
 
 .checkbox {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .text {
@@ -33,6 +33,7 @@
   background-color: var(--color-grey);
   border-radius: 100%;
   transition: all 150ms ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .icon:hover {
@@ -44,4 +45,32 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--color-text);
+}
+
+.todoform {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.475rem 1.1rem;
+  background-color: aqua;
+}
+
+.input {
+  font-size: 1.1rem;
+  width: 80%;
+  color: var(--color-text);
+  padding: 0.2rem 1rem;
+  border: 1px solid var(--color-grey);
+  outline: none;
+  border-radius: 0.2rem;
+  background-color: var(--color-bg-dark);
+  transition: border ease-in 180ms;
+}
+
+.input:focus {
+  box-sizing: border-box;
+  border: 1px solid var(--color-accent);
+  border-color: var(--color-accent);
 }
