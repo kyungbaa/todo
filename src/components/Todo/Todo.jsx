@@ -31,6 +31,11 @@ const Todo = ({ todo, onUpdate, onDelete }) => {
   const handleModifyText = (e) => {
     setModifyText(e.target.value);
   };
+
+  const handleCancel = (e) => {
+    e.preventDefault();
+    handleModifyStatus();
+  };
   return (
     <>
       {modifyStatus ? (
@@ -47,16 +52,16 @@ const Todo = ({ todo, onUpdate, onDelete }) => {
           </label>
           <div className={styles.buttons}>
             <span className={styles.icon}>
-              <button onClick={handleDelete} className={styles.todoButton}>
-                <RiDeleteBin2Fill size="18px" />
-              </button>
-            </span>
-            <span className={styles.icon}>
               <button
                 onClick={handleModifyStatus}
                 className={styles.todoButton}
               >
                 <RiEditFill size="18px" />
+              </button>
+            </span>
+            <span className={styles.icon}>
+              <button onClick={handleDelete} className={styles.todoButton}>
+                <RiDeleteBin2Fill size="18px" />
               </button>
             </span>
           </div>
@@ -73,19 +78,19 @@ const Todo = ({ todo, onUpdate, onDelete }) => {
             <span className={styles.icon}>
               <button
                 className={styles.todoButton}
-                onClick={handleModifyStatus}
+                onClick={handleModifySubmit}
                 disabled={modifyText.trim() !== '' ? false : true}
               >
-                <TiCancel size="22px" />
+                <ImCheckmark size="14px" />
               </button>
             </span>
             <span className={styles.icon}>
               <button
                 className={styles.todoButton}
-                onClick={handleModifySubmit}
+                onClick={handleCancel}
                 disabled={modifyText.trim() !== '' ? false : true}
               >
-                <ImCheckmark size="14px" />
+                <TiCancel size="22px" />
               </button>
             </span>
           </div>

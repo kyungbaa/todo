@@ -3,10 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 import styles from './AddTodo.module.css';
 import AlertModal from './AlertModal/AlertModal';
 const AddTodo = ({ handleAddTodo }) => {
-  const [todoText, setTotoText] = useState('');
+  const [todoText, setTodoText] = useState('');
   const [textNullAlert, setTextNullAleart] = useState(false);
   const handleInputValue = (e) => {
-    setTotoText(e.target.value);
+    setTodoText(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -16,7 +16,7 @@ const AddTodo = ({ handleAddTodo }) => {
       return;
     }
     handleAddTodo({ id: uuidv4(), text: todoText, status: 'active' });
-    setTotoText('');
+    setTodoText('');
   };
 
   const handleNullTextAleart = () => {
