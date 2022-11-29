@@ -9,7 +9,7 @@ import { ImCheckmark } from 'react-icons/im';
 import { TiCancel } from 'react-icons/ti';
 import styles from './Todo.module.css';
 const Todo = ({ todo, onUpdate, onDelete }) => {
-  const { text, status } = todo;
+  const { text, status, id } = todo;
   const [modifyStatus, setModifyStatus] = useState(true);
   const [modifyText, setModifyText] = useState(text);
   const handleStatus = (e) => {
@@ -43,11 +43,11 @@ const Todo = ({ todo, onUpdate, onDelete }) => {
           <input
             className={styles.checkbox}
             type="checkbox"
-            id={todo.id}
+            id={id}
             checked={status === 'completed'}
             onChange={handleStatus}
           />
-          <label className={styles.text} htmlFor={todo.id}>
+          <label className={styles.text} htmlFor={id}>
             {text}
           </label>
           <div className={styles.buttons}>

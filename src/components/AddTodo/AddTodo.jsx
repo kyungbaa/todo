@@ -21,9 +21,9 @@ const AddTodo = ({ handleAddTodo }) => {
 
   const handleNullTextAleart = () => {
     setTextNullAleart(!textNullAlert);
-    // setTimeout(() => {
-    //   setTextNullAleart((textNullAlert) => !textNullAlert);
-    // }, 1800);
+    setTimeout(() => {
+      setTextNullAleart((textNullAlert) => !textNullAlert);
+    }, 1800);
   };
 
   return (
